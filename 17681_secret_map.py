@@ -40,13 +40,17 @@ arr2	[27 ,56, 19, 14, 14, 10]
 출력	["######", "### #", "## ##", " #### ", " #####", "### # "]
 
 """
+
+import numpy
+
+
 n1 = 5
 arr11 = [9, 20, 28, 18, 11]
 arr12 = [30, 1, 21, 17, 28]
 
 n2 = 6
-arr21 = [9, 20, 28, 18, 11]
-arr22 = [30, 1, 21, 17, 28]
+arr21 = [46, 33, 33, 22, 31, 50]
+arr22 = [27, 56, 19, 14, 14, 10]
 
 
 def solution(n, arr1, arr2):
@@ -71,3 +75,23 @@ def solution(n, arr1, arr2):
 
 print(solution(n1, arr11, arr12))
 print(solution(n2, arr21, arr22))
+
+
+def solution_numpy(n, arr1, arr2):
+    answer = []
+
+    for i in range(n):
+        arr1_int = numpy.array(list(map(int, str(bin(arr1[i])[2:].zfill(n)))))
+        arr2_int = numpy.array(list(map(int, str(bin(arr2[i])[2:].zfill(n)))))
+
+        replaced = "".join(numpy.where(
+            arr1_int + arr2_int == 0, " ", "#").tolist())
+
+        answer.append(replaced)
+
+    return answer
+# 제출 답안: 3점 -----------------------------------------------------------
+
+
+print(solution_numpy(n1, arr11, arr12))
+print(solution_numpy(n2, arr21, arr22))
