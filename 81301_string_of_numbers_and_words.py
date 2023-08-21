@@ -76,6 +76,17 @@ def solution(s):
 # 제출 답안: 2점!! ---------------------------------------------------------
 
 
+words = ['zero', 'one', 'two', 'three', 'four',
+         'five', 'six', 'seven', 'eight', 'nine']
+
+
+def solution(s):
+    for i, word in enumerate(words):
+        s = s.replace(word, str(i))
+    return int(s)
+# 좋아요 82개, 40명 답안 변형(range(len(words)), words[i]->enumerate)
+
+
 print(solution(s1))
 print(solution(s2))
 print(solution(s3))

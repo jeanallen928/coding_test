@@ -38,26 +38,60 @@ def solution(n, m):
 
 
 def solution(n, m):
+    gcd = math.gcd(n, m)
+    return [gcd, n*m/gcd]
+# 코드 리뷰 후 개선 ----------------------------------------------------------
+
+
+def solution(n, m):
     a = max(n, m)
     b = min(n, m)
-    lcm = a*b
+    x = a*b
     while a % b > 0:
         b = a % b
-    return [b, lcm/b]
+    return [b, x/b]
 # 코드 실행 통과, 테스트 2, 12, 16 실패 ------------------------------------------
 
 
 def solution(n, m):
     a = max(n, m)
     b = min(n, m)
-    lcm = a*b
+    x = a*b
     while a % b > 0:
         r = a % b
         a = b
         b = r
-    return [b, lcm/b]
+    return [b, x/b]
 # 제출 답안: 4점! ----------------------------------------------------------
+
+
+def solution(n, m):
+    x = n*m
+    while n % m > 0:
+        r = n % m
+        n = m
+        m = r
+    return [m, x/m]
+# 코드 리뷰 후 개선 ----------------------------------------------------------
+
+
+def gcd(a, b):
+    return b if a % b == 0 else gcd(b, a % b)
+
+
+def lcm(a, b):
+    return int(a * b / gcd(a, b))
+
+
+def gcdlcm(a, b):
+    answer = [gcd(a, b), lcm(a, b)]
+    return answer
+# 좋아요 10개, 재귀함수 사용 답안 -------------------------------------------------
 
 
 print(solution(n1, m1))
 print(solution(n2, m2))
+
+
+print(gcdlcm(n1, m1))
+print(gcdlcm(n2, m2))
